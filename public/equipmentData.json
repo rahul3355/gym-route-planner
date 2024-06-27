@@ -1,0 +1,18 @@
+[
+    { "id": "1", "name": "Treadmill", "connections": ["2"], "row": 0, "col": 0 }, 
+    { "id": "2", "name": "Bench Press", "connections": ["3", "4"], "row": 0, "col": 1 }, 
+    { "id": "3", "name": "Incline Bench Press", "connections": ["2", "5"], "row": 0, "col": 2 }, 
+    { "id": "4", "name": "Chest Fly Machine", "connections": ["2"], "row": 1, "col": 1 }, 
+    { "id": "5", "name": "Dumbbell Shoulder Press", "connections": ["6"], "row": 1, "col": 2 }, 
+    { "id": "6", "name": "Lateral Raise Machine", "connections": ["5", "7"], "row": 2, "col": 2 }, 
+    { "id": "7", "name": "Lat Pulldown", "connections": ["6", "8"], "row": 3, "col": 2 }, 
+    { "id": "8", "name": "Seated Row Machine", "connections": ["7", "9"], "row": 4, "col": 2 }, 
+    { "id": "9", "name": "Leg Press", "connections": ["10"], "row": 5, "col": 2 }, 
+    { "id": "10", "name": "Leg Curl Machine", "connections": ["9", "11"], "row": 5, "col": 1 }, 
+    { "id": "11", "name": "Leg Extension Machine", "connections": ["10", "12"], "row": 5, "col": 0 },
+    { "id": "12", "name": "Calf Raise Machine", "connections": ["11"], "row": 4, "col": 0 }, 
+    { "id": "13", "name": "Bicep Curl Machine", "connections": ["14"], "row": 3, "col": 0 }, 
+    { "id": "14", "name": "Tricep Extension Machine", "connections": ["13", "15"], "row": 2, "col": 0 }, 
+    { "id": "15", "name": "Cable Crossover", "connections": ["14", "2"], "row": 1, "col": 0 } 
+  ]
+  

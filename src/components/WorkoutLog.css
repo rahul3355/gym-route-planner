@@ -1,0 +1,45 @@
+.workout-log {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px; /* Decreased width */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .log-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .log-form div {
+    margin-right: 10px;
+  }
+  
+  .log-form label {
+    margin-right: 5px;
+  }
+  
+  .log-table {
+    margin-top: 20px;
+  }
+  
+  .log-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .log-table th, .log-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .log-table th {
+    background-color: #f2f2f2;
+  }
+  
