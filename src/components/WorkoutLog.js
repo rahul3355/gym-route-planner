@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
+import { db } from '../../src/firebaseConfig';
 import './WorkoutLog.css';
 import CustomCalendar from './CustomCalender';
 
@@ -9,30 +11,68 @@ const WorkoutLog = ({ workouts }) => {
   const [workoutType, setWorkoutType] = useState('');
   const [log, setLog] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
+  const [editDocId, setEditDocId] = useState(null);
 
-  const handleAddLog = () => {
+  // Fetch workout logs from Firestore
+  const fetchLogs = async () => {
+    console.log('Fetching logs from Firestore');
+    try {
+      const querySnapshot = await getDocs(collection(db, 'workoutLogs'));
+      const logs = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      console.log('Fetched logs:', logs);
+      setLog(logs);
+    } catch (error) {
+      console.error('Error fetching logs:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchLogs();
+  }, []);
+
+  const handleAddLog = async () => {
     if (workoutType) {
-      if (editIndex !== null) {
-        const updatedLog = [...log];
-        updatedLog[editIndex] = { date: date.toLocaleDateString(), workoutType };
-        setLog(updatedLog);
-        setEditIndex(null);
-      } else {
-        setLog([...log, { date: date.toLocaleDateString(), workoutType }]);
+      const newLog = { date: date.toLocaleDateString(), workoutType };
+      console.log('Adding log:', newLog);
+      try {
+        if (editIndex !== null) {
+          const logDoc = doc(db, 'workoutLogs', editDocId);
+          await updateDoc(logDoc, newLog);
+          console.log('Updated log:', newLog);
+          setEditIndex(null);
+          setEditDocId(null);
+        } else {
+          await addDoc(collection(db, 'workoutLogs'), newLog);
+          console.log('Added new log:', newLog);
+        }
+        fetchLogs();
+        setWorkoutType('');
+      } catch (error) {
+        console.error('Error adding/updating log:', error);
       }
-      setWorkoutType('');
     }
   };
 
   const handleEdit = (index) => {
-    setDate(new Date(log[index].date));
-    setWorkoutType(log[index].workoutType);
+    const logEntry = log[index];
+    console.log('Editing log entry:', logEntry);
+    setDate(new Date(logEntry.date));
+    setWorkoutType(logEntry.workoutType);
     setEditIndex(index);
+    setEditDocId(logEntry.id);
   };
 
-  const handleDelete = (index) => {
-    const updatedLog = log.filter((_, i) => i !== index);
-    setLog(updatedLog);
+  const handleDelete = async (index) => {
+    const logEntry = log[index];
+    console.log('Deleting log entry:', logEntry);
+    try {
+      const logDoc = doc(db, 'workoutLogs', logEntry.id);
+      await deleteDoc(logDoc);
+      console.log('Deleted log entry:', logEntry);
+      fetchLogs();
+    } catch (error) {
+      console.error('Error deleting log entry:', error);
+    }
   };
 
   return (
@@ -75,7 +115,7 @@ const WorkoutLog = ({ workouts }) => {
           </thead>
           <tbody>
             {log.map((entry, index) => (
-              <tr key={index}>
+              <tr key={entry.id}>
                 <td>{entry.date}</td>
                 <td>{entry.workoutType}</td>
                 <td>

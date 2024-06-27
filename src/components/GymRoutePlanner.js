@@ -47,6 +47,7 @@ const GymRoutePlanner = () => {
           <WorkoutRoute equipmentList={equipmentList} path={route} />
         </div>
       )}
+      <h2>Gym Layout</h2>
       <GridVisualizer equipmentList={equipmentList} path={route} />
       <WorkoutLog workouts={workouts} />
     </div>
