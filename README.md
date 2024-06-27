@@ -1,6 +1,8 @@
 # Gym Route Planner
 Gym members often struggle to keep track of their workout routines, leading to inconsistent workout sessions and difficulty in monitoring progress. A centralized workout log can help users organize their exercises, track their performance, and stay motivated.
 
+Live: https://gym-route-planner.netlify.app/
+
 # Tech Stack:
 
 React, Firebase Firestore, JSON, Graph
