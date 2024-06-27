@@ -2,17 +2,37 @@ import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './WorkoutLog.css';
+import CustomCalendar from './CustomCalender';
 
 const WorkoutLog = ({ workouts }) => {
   const [date, setDate] = useState(new Date());
   const [workoutType, setWorkoutType] = useState('');
   const [log, setLog] = useState([]);
+  const [editIndex, setEditIndex] = useState(null);
 
   const handleAddLog = () => {
     if (workoutType) {
-      setLog([...log, { date: date.toLocaleDateString(), workoutType }]);
+      if (editIndex !== null) {
+        const updatedLog = [...log];
+        updatedLog[editIndex] = { date: date.toLocaleDateString(), workoutType };
+        setLog(updatedLog);
+        setEditIndex(null);
+      } else {
+        setLog([...log, { date: date.toLocaleDateString(), workoutType }]);
+      }
       setWorkoutType('');
     }
+  };
+
+  const handleEdit = (index) => {
+    setDate(new Date(log[index].date));
+    setWorkoutType(log[index].workoutType);
+    setEditIndex(index);
+  };
+
+  const handleDelete = (index) => {
+    const updatedLog = log.filter((_, i) => i !== index);
+    setLog(updatedLog);
   };
 
   return (
@@ -23,8 +43,8 @@ const WorkoutLog = ({ workouts }) => {
           <label>Select Date: </label>
           <DatePicker 
             selected={date} 
-            onChange={(date) => setDate(date)} 
-            popperPlacement="bottom" // Set the popper placement to bottom
+            onChange={(date) => setDate(date)}
+            popperClassName="react-datepicker-popper"
           />
         </div>
         <div>
@@ -41,7 +61,7 @@ const WorkoutLog = ({ workouts }) => {
             ))}
           </select>
         </div>
-        <button onClick={handleAddLog}>Add Log</button>
+        <button onClick={handleAddLog}>{editIndex !== null ? 'Update Log' : 'Add Log'}</button>
       </div>
       <div className="log-table">
         <h3>Logged Workouts</h3>
@@ -50,6 +70,7 @@ const WorkoutLog = ({ workouts }) => {
             <tr>
               <th>Date</th>
               <th>Workout Type</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -57,11 +78,16 @@ const WorkoutLog = ({ workouts }) => {
               <tr key={index}>
                 <td>{entry.date}</td>
                 <td>{entry.workoutType}</td>
+                <td>
+                  <button onClick={() => handleEdit(index)}>Edit</button>
+                  <button onClick={() => handleDelete(index)}>Delete</button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      <CustomCalendar log={log} />
     </div>
   );
 };
