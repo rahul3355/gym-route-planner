@@ -45,8 +45,7 @@ Initialize Firebase in the React project.
 Use Firestore to fetch and store workout logs.
 Add console logs for debugging to ensure data is correctly handled.
 
-Deployment:
-Deployed using Netlify.
+Deployment: Netlify.
 
 By implementing this project, gym members can efficiently log their workouts, visualize their progress over time, and optimize their exercise routines, leading to more productive and enjoyable gym sessions.
 
