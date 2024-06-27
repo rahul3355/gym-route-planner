@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# Gym Route Planner
+Gym members often struggle to keep track of their workout routines, leading to inconsistent workout sessions and difficulty in monitoring progress. A centralized workout log can help users organize their exercises, track their performance, and stay motivated.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Tech Stack:
 
-## Available Scripts
+React, Firebase Firestore, JSON, Graph
 
-In the project directory, you can run:
+# Features:
 
-### `npm start`
+Workout Logging:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Users can input their workout details, including the date and type of workout.
+The app logs the workouts in a table format, showing date, workout type, and options to edit or delete each entry.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Workout Calendar:
+A custom calendar component highlights days with logged workouts.
+Users can navigate between months to view their workout history.
+The calendar displays logged workouts with a pixelated, retro game-themed design for a unique visual experience.
 
-### `npm test`
+UI:
+Date selection through a calendar UI for logging workouts.
+Dropdown menu to select workout types from predefined categories.
+Animated display of workout routes, highlighting equipment used in the gym grid one by one.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Firebase Integration:
+Firebase Firestore stores workout logs, ensuring data persistence.
+Real-time data fetching to display the latest workout entries.
+Secure data management with Firebase authentication (optional for future implementation).
 
-### `npm run build`
+# Steps to Implement:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Setup Firebase:
+Create a Firebase project and enable Firestore.
+Configure Firestore rules for secure data access.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Frontend Development:
+Create React components for workout logging, calendar view, and gym grid.
+Style components using CSS for a pixelated, retro game theme.
+Implement form handling for adding, editing, and deleting workout logs.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Firebase Integration:
+Initialize Firebase in the React project.
+Use Firestore to fetch and store workout logs.
+Add console logs for debugging to ensure data is correctly handled.
 
-### `npm run eject`
+Deployment:
+Deployed using Netlify.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+By implementing this project, gym members can efficiently log their workouts, visualize their progress over time, and optimize their exercise routines, leading to more productive and enjoyable gym sessions.
